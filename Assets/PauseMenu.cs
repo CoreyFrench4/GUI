@@ -25,7 +25,7 @@ public class PauseMenu : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            TogglePause();
+            
         }
     }
     public void ShowOptions()

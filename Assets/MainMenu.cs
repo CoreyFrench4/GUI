@@ -12,26 +12,29 @@ public class MainMenu : MonoBehaviour
     public Slider volumeSlider, brightnessSlider;
     public AudioSource music;
     public Light dirLight;
+    public bool isMute;
     #endregion
-     void Start()
+    void Start()
     {
-        if(PlayerPrefs.HasKey("Volume"))
+
+        if (PlayerPrefs.HasKey("Volume"))
         {
             Load();
         }
+
         if (volumeSlider != null && music != null)
         {
-                       
-                volumeSlider.GetComponent<Slider>().value = music.volume;
-            
+
+            volumeSlider.GetComponent<Slider>().value = music.volume;
+
         }
-        
+
         if (brightnessSlider != null && dirLight != null)
         {
             brightnessSlider.value = dirLight.intensity;
 
         }
-      
+
     }
 
     void Update()
@@ -43,14 +46,16 @@ public class MainMenu : MonoBehaviour
         }
         if (brightnessSlider != null && dirLight != null)
         {
-            if(brightnessSlider.value != dirLight.intensity)
+            if (brightnessSlider.value != dirLight.intensity)
             {
                 dirLight.intensity = brightnessSlider.value;
             }
         }
+
+
     }
 
-    
+
 
     public void Play()
     {
@@ -62,7 +67,7 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Quit");
     }
 
-   
+
     public void Microtransactions()
     {
         SceneManager.LoadScene(2);
@@ -105,6 +110,22 @@ public class MainMenu : MonoBehaviour
         brightnessSlider.value = 1;
         PlayerPrefs.SetFloat("Volume", 1);
         PlayerPrefs.SetFloat("Brightness", 1);
+    }
+    public void MuteToggle()
+    {
+        isMute = !isMute;
+        if (isMute == true)
+        {
+            AudioListener.volume = 0;
+            PlayerPrefs.SetFloat("Volume", music.volume);
+            PlayerPrefs.SetFloat("isMute", 0);
+        }
+        else
+        {
+            AudioListener.volume = 1;
+            PlayerPrefs.SetFloat("Volume", music.volume);
+            PlayerPrefs.SetFloat("isMute", 1);
+        }
     }
 }
 
