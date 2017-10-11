@@ -41,7 +41,7 @@ public class MainMenu : MonoBehaviour
     public GameObject menu, options;
     #endregion
     [Header("Bools")]
-
+   
     [Header("Resolutions")]
     public int index;
     public int[] resX, resY;
@@ -49,7 +49,7 @@ public class MainMenu : MonoBehaviour
     //Dropdown has a value variable that you can use to reference arrays
 
     void Start()
-    {
+    { 
         #region volume
 
         isMute = false;
@@ -70,7 +70,7 @@ public class MainMenu : MonoBehaviour
             brightnessSlider.value = dirLight.intensity;
 
         }
-        #endregion
+ #endregion 
         #region SetUp Keys
         //set out keys to the preset keys we may ahve saves else set keys to default
         forward = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Forward", "W"));
@@ -165,20 +165,20 @@ public class MainMenu : MonoBehaviour
     {
         PlayerPrefs.SetFloat("Volume", music.volume);
         PlayerPrefs.SetFloat("Brightness", dirLight.intensity);
-        PlayerPrefs.SetString("Forward", forward.ToString());
-        PlayerPrefs.SetString("Backward", backward.ToString());
-        PlayerPrefs.SetString("Left", left.ToString());
-        PlayerPrefs.SetString("Right", right.ToString());
-        PlayerPrefs.SetString("Jump", jump.ToString());
-        PlayerPrefs.SetString("Crouch", crouch.ToString());
+        PlayerPrefs.SetString("Forward",forward.ToString());
+        PlayerPrefs.SetString("Backward",backward.ToString());
+        PlayerPrefs.SetString("Left",left.ToString());
+        PlayerPrefs.SetString("Right",right.ToString());
+        PlayerPrefs.SetString("Jump",jump.ToString());
+        PlayerPrefs.SetString("Crouch",crouch.ToString());
         PlayerPrefs.SetString("Sprint", sprint.ToString());
-        PlayerPrefs.SetString("Interact", interact.ToString());
+        PlayerPrefs.SetString("Interact",interact.ToString());
     }
     public void Load()
     {
         music.volume = PlayerPrefs.GetFloat("Volume");
         dirLight.intensity = PlayerPrefs.GetFloat("Brightness");
-
+        
     }
     public void Default()
     {
@@ -205,7 +205,7 @@ public class MainMenu : MonoBehaviour
         }
     }
     public void FullScreenToggle()
-    {
+        {
         fullScreenToggle = !fullScreenToggle;
         Screen.fullScreen = !Screen.fullScreen;
 
@@ -357,10 +357,10 @@ public class MainMenu : MonoBehaviour
     {
         Event e = Event.current;
         //if forward is set to none
-        if (forward == KeyCode.None)
-            if (e.isKey)
+        if(forward == KeyCode.None)
+            if(e.isKey)
             {
-                Debug.Log("Key Code: " + e.keyCode);
+                Debug.Log("Key Code: "+ e.keyCode);
                 if (!(e.keyCode == backward || e.keyCode == left || e.keyCode == right || e.keyCode == jump || e.keyCode == crouch || e.keyCode == sprint || e.keyCode == interact))
                 {
                     //set Forward to new key
@@ -469,17 +469,18 @@ public class MainMenu : MonoBehaviour
                     jumpText.text = jump.ToString();
                 }
             }
-
-}
+    }
     #endregion
-    /*
-      RESOLUTIONS 
-      3840 * 2160
-      1920 * 1080
+     /*
+       RESOLUTIONS 
+       3840 * 2160
+       1920 * 1080
+      
+       1152 * 648
+       1600 * 900
+       1024 *576
 
-      1152 * 648
-      1600 * 900
-      1024 *576
-   Screen.SetResolution(x,y,fullscreen(bool));
-   */
+    Screen.SetResolution(x,y,fullscreen(bool));
+    */
 }
+
